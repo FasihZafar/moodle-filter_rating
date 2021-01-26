@@ -50,6 +50,7 @@ class filter_rating extends moodle_text_filter {
         $renderer = $PAGE->get_renderer('filter_rating');
 
         $text = str_replace('[rating]', $renderer->render(new \filter_rating\output\star_rating($this->context)), $text);
+        $text = str_replace('[ratingcount]', $renderer->render(new \filter_rating\output\rating_count($this->context)), $text);
         $text = str_replace('[getrating]', $renderer->render(new \filter_rating\output\star_rating($this->context, true)), $text);
         $text = str_replace('[currentrating]', $renderer->render(new \filter_rating\output\current_rating($this->context)), $text);
 

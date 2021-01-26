@@ -15,15 +15,45 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details
+ * Class renderer.
  *
  * @package    filter_rating
  * @copyright  2021 bdecent gmbh <https://bdecent.de>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace filter_rating\output;
+
+use context;
+use filter_rating\local\rating;
+use renderable;
+use renderer_base;
+use templatable;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2021011704;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2015111610;        // Requires this Moodle version
-$plugin->component = 'filter_rating'; // Full name of the plugin (used for diagnostics)
+/**
+ * Class renderer.
+ *
+ * @package filter_rating
+ */
+class rating_count implements templatable, renderable {
+
+    /**
+     * @var context
+     */
+    private $context;
+
+    /**
+     * @param context $context
+     */
+    public function __construct(context $context) {
+        $this->context = $context;
+    }
+
+    public function export_for_template(renderer_base $output) {
+        return [
+            'ratingcount' => rating::get_rating_count($this->context)
+        ];
+    }
+}
