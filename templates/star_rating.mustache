@@ -1,0 +1,9 @@
+<span id="star-rating-{{uniqueid}}" data-options="{{options}}">
+    {{>filter_rating/stars}}
+</span>
+
+{{#js}}
+    require(['filter_rating/star_rating'], function(StarRating) {
+        const st = new StarRating('#star-rating-{{uniqueid}}', {{contextid}});
+    });
+{{/js}}

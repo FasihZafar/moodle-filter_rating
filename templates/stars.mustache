@@ -1,0 +1,15 @@
+{{#stars}}
+    <span {{^readonly}}data-action="set-rating" data-value="{{rating}}" style="cursor: pointer"{{/readonly}}>
+        {{#fullstar}}
+            <i class="fa fa-star {{#myrating}}text-info{{/myrating}}{{^myrating}}text-warning{{/myrating}}"></i>
+        {{/fullstar}}
+        {{^fullstar}}
+            {{#halfstar}}
+                <i class="fa fa-star-half-o {{#myrating}}text-info{{/myrating}}{{^myrating}}text-warning{{/myrating}}"></i>
+            {{/halfstar}}
+            {{^halfstar}}
+                <i class="fa fa-star-o {{#myrating}}text-info{{/myrating}}{{^myrating}}text-warning{{/myrating}}"></i>
+            {{/halfstar}}
+        {{/fullstar}}
+    </span>
+{{/stars}}
