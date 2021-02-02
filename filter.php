@@ -47,6 +47,10 @@ class filter_rating extends moodle_text_filter {
             return $text;
         }
 
+        // Don't apply filter if theme is not set.
+        if (!$PAGE->get_where_theme_was_initialised()) {
+            return $text;
+        }
         $renderer = $PAGE->get_renderer('filter_rating');
 
         $text = str_replace('[rating]', $renderer->render(new \filter_rating\output\star_rating($this->context)), $text);
