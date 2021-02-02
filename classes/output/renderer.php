@@ -33,4 +33,16 @@ defined('MOODLE_INTERNAL') || die();
  */
 class renderer extends \plugin_renderer_base {
 
+    /**
+     * Render rating widgets. Backwards compatible for Totara 12.12.
+     *
+     * @param \renderable $widget
+     * @return bool|string
+     * @throws \moodle_exception
+     */
+    public function render($widget) {
+        $widgetclass = explode('\\', get_class($widget));
+        $widgetclass = array_pop($widgetclass);
+        return $this->render_from_template('filter_rating/' . $widgetclass, $widget->export_for_template($this));
+    }
 }
